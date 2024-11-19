@@ -3,7 +3,7 @@ export type tRegisterUser<T = string> = {
   username: T,
   password: T,
   fullname: T,
-}
+};
 
 export class RegisterUser {
   public username: string;

@@ -6,11 +6,9 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll --coverage --setupFiles dotenv/config",
-    "lint": "eslint \"{src}/**/*.ts\" --fix",
+    "lint": "eslint \"src/**/*.ts\" --fix",
     "build": "npx tsc",
-    "build:watch": "npx tsc --watch",
     "start": "node dist/app.js",
-    "start:ts": "node --no-warnings --loader ts-node/esm src/app.ts",
     "start:dev": "ts-node-dev --respawn src/app.ts",
     "migration:create": "npx prisma migrate dev --create-only",
     "migration:up": "npx prisma migrate dev",
@@ -44,7 +42,7 @@
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.14.0"
+    "typescript-eslint": "^8.15.0"
   },
   "jest": {
     "transform": {

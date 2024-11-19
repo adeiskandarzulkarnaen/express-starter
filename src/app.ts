@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express, { Express, Request, Response } from 'express';
-import ClientError from '@commons/exceptions/ClientError';
+// import ClientError from '@commons/exceptions/ClientError';
 
 
 

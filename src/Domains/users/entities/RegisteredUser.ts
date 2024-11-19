@@ -3,7 +3,7 @@ export type tRegisteredUser<T = string> = {
   id: T,
   username: T,
   fullname: T,
-}
+};
 
 export class RegisteredUser {
   public id: string;
