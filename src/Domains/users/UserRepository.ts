@@ -1,4 +1,5 @@
-import { tRegisteredUser } from "./entities/RegisteredUser";
+import { RegisteredUser } from './entities/RegisteredUser';
+import { RegisterUser } from './entities/RegisterUser';
 
 abstract class UserRepository {
   /**
@@ -6,7 +7,7 @@ abstract class UserRepository {
    * @param registerUser - Data pengguna yang akan didaftarkan
    * @throws Error jika metode belum diimplementasikan
    */
-  abstract addUser(registerUser: any): Promise<tRegisteredUser>;
+  abstract addUser(registerUser: RegisterUser): Promise<RegisteredUser>;
 
   /**
    * Memverifikasi apakah username tersedia di repository

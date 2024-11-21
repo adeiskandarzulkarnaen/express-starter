@@ -1,5 +1,5 @@
 
-export type tRegisteredUser<T = string> = {
+export type eRegisteredUser<T = string> = {
   id: T,
   username: T,
   fullname: T,
@@ -10,7 +10,7 @@ export class RegisteredUser {
   public username: string;
   public fullname: string;
 
-  constructor(payload: Partial<tRegisteredUser<any>>) {
+  constructor(payload: Partial<eRegisteredUser<any>>) {
     this.verifyPayload(payload);
     const { id, username, fullname } = payload;
 
@@ -19,7 +19,7 @@ export class RegisteredUser {
     this.fullname = fullname!;
   }
 
-  private verifyPayload({ id, username, fullname }: Partial<tRegisteredUser>) {
+  private verifyPayload({ id, username, fullname }: Partial<eRegisteredUser>) {
     if (!id || !username || !fullname) {
       throw new Error('REGISTERED_USER.NOT_CONTAIN_NEEDED_PROPERTY');
     }

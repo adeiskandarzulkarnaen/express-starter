@@ -1,4 +1,4 @@
-import ClientError from "./ClientError";
+import ClientError from './ClientError';
 
 class NotFoundError extends ClientError {
   public name: string;

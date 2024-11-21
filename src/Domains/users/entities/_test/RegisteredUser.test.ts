@@ -1,4 +1,4 @@
-import { tRegisteredUser, RegisteredUser } from'../RegisteredUser';
+import { eRegisteredUser, RegisteredUser } from '../RegisteredUser';
 
 
 describe('a RegisteredUser entities', () => {
@@ -29,7 +29,7 @@ describe('a RegisteredUser entities', () => {
 
   it('should create registeredUser object correctly', () => {
     // Arrange
-    const payload: tRegisteredUser = {
+    const payload: eRegisteredUser = {
       id: 'user-123',
       username: 'adeiskandarzulkarnaen',
       fullname: 'Ade Iskandar Zulkarnaen',

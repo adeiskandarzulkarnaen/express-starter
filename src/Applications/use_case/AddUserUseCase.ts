@@ -1,24 +1,19 @@
-import { tRegisterUser, RegisterUser } from "@domains/users/entities/RegisterUser";
-import { tRegisteredUser } from "@domains/users/entities/RegisteredUser";
-import UserRepository from "@domains/users/UserRepository";
-import PasswordHash from "@applications/security/PasswordHash";
+import { eRegisterUser, RegisterUser } from '@domains/users/entities/RegisterUser';
+import { eRegisteredUser } from '@domains/users/entities/RegisteredUser';
+import UserRepository from '@domains/users/UserRepository';
+import PasswordHash from '@applications/security/PasswordHash';
 
-
-type tAddUserUseCaseDependencies = {
-  userRepository: UserRepository;
-  passwordHash: PasswordHash;
-};
 
 class AddUserUseCase {
   private userRepository: UserRepository;
   private passwordHash: PasswordHash;
 
-  constructor({ userRepository, passwordHash }: tAddUserUseCaseDependencies) {
+  constructor(userRepository: UserRepository, passwordHash: PasswordHash) {
     this.userRepository = userRepository;
     this.passwordHash = passwordHash;
   }
 
-  public async execute(useCasePayload: tRegisterUser): Promise<tRegisteredUser> {
+  async execute(useCasePayload: eRegisterUser): Promise<eRegisteredUser> {
     const registerUser = new RegisterUser(useCasePayload);
     await this.userRepository.verifyAvailableUsername(registerUser.username!);
     registerUser.password = await this.passwordHash.hash(registerUser.password!);

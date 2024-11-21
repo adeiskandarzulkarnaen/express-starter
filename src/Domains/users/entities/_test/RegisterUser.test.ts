@@ -1,4 +1,4 @@
-import { tRegisterUser, RegisterUser } from '../RegisterUser';
+import { eRegisterUser, RegisterUser } from '../RegisterUser';
 
 describe('a RegisterUser entities', () => {
   it('should throw error when payload did not contain needed property', () => {
@@ -16,7 +16,7 @@ describe('a RegisterUser entities', () => {
   it('should throw error when payload did not meet data type specification', () => {
     // Arrange
     const payload = {
-      username: "adeiskandarzulkarnaen",
+      username: 'adeiskandarzulkarnaen',
       fullname: true,
       password: 123,
     };
@@ -28,7 +28,7 @@ describe('a RegisterUser entities', () => {
 
   it('should throw error when username contains more than 50 character', () => {
     // Arrange
-    const payload: tRegisterUser = {
+    const payload: eRegisterUser = {
       username: 'adeiskandarzulkarnaenadeiskandarzulkarnaenadeiskandarzulkarnaen',
       fullname: 'Ade Iskandar Zulkarnaen',
       password: 'secretpassword',
@@ -41,7 +41,7 @@ describe('a RegisterUser entities', () => {
 
   it('should throw error when username contains restricted character', () => {
     // Arrange
-    const payload: tRegisterUser = {
+    const payload: eRegisterUser = {
       username: 'ade iskandar',
       fullname: 'Ade Iskandar Zulkarnaen',
       password: 'secret',
@@ -54,7 +54,7 @@ describe('a RegisterUser entities', () => {
 
   it('should create registerUser object correctly', () => {
     // Arrange
-    const payload: tRegisterUser = {
+    const payload: eRegisterUser = {
       username: 'adeiskandarzulkarnaen',
       fullname: 'Ade Iskandar Zulkarnaen',
       password: 'secretpassword',

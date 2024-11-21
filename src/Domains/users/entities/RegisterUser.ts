@@ -1,5 +1,5 @@
 
-export type tRegisterUser<T = string> = {
+export type eRegisterUser<T = string> = {
   username: T,
   password: T,
   fullname: T,
@@ -10,7 +10,7 @@ export class RegisterUser {
   public password: string;
   public fullname: string;
 
-  constructor(payload: Partial<tRegisterUser<any>>) {
+  constructor(payload: Partial<eRegisterUser<any>>) {
     this.verifyPayload(payload);
 
     const { username, password, fullname } = payload;
@@ -19,7 +19,7 @@ export class RegisterUser {
     this.fullname = fullname!;
   }
 
-  private verifyPayload(payload: Partial<tRegisterUser>): void {
+  private verifyPayload(payload: Partial<eRegisterUser>): void {
     const { username, password, fullname } = payload;
 
     // Check for missing properties
@@ -28,7 +28,7 @@ export class RegisterUser {
     }
 
     // Check for incorrect data types
-    if ( typeof username !== 'string' || typeof password !== 'string' || typeof fullname !== 'string') {
+    if (typeof username !== 'string' || typeof password !== 'string' || typeof fullname !== 'string') {
       throw new Error('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }
 

@@ -1,4 +1,4 @@
-import ClientError from "./ClientError";
+import ClientError from './ClientError';
 
 class AuthenticationError extends ClientError {
   public name:string;

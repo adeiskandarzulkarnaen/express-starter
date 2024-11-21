@@ -13,7 +13,7 @@ abstract class PasswordHash {
    * @param encrypted - Password yang sudah di-hash.
    * @returns Boolean yang menunjukkan apakah password cocok.
    */
-  abstract comparePassword(plain: string, encrypted: string): Promise<boolean>;
+  abstract comparePassword(plain: string, encrypted: string): Promise<void>;
 };
 
 export default PasswordHash;

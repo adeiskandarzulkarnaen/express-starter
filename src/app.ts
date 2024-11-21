@@ -1,16 +1,15 @@
 import 'dotenv/config';
-import express, { Express, Request, Response } from 'express';
-// import ClientError from '@commons/exceptions/ClientError';
+import { Express } from 'express';
+import container from '@infrastructures/container';
+import createServer from '@infrastructures/http/createServer';
 
+const start = async () => {
+  const app: Express = createServer(container);
 
+  const port = process.env.PORT;
+  app.listen(port, () => {
+    console.log(`Server up and running on port ${port}...`);
+  });
+};
 
-const app: Express = express();
-
-app.get('/', (req: Request, res: Response) => {
-  res.send("ok");
-});
-
-
-app.listen(3000, () => {
-  console.log("Server up and running...")
-});
+start();

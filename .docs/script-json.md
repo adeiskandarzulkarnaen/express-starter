@@ -1,3 +1,4 @@
+```JSON
 {
   "name": "express-starter",
   "version": "1.0.0",
@@ -7,9 +8,10 @@
     "test": "jest",
     "test:watch": "jest --watchAll --coverage --setupFiles dotenv/config",
     "lint": "eslint \"src/**/*.ts\" --fix",
-    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-    "start": "node -r tsconfig-paths/register dist/app.js",
-    "start:dev": "ts-node-dev -r tsconfig-paths/register --respawn src/app.ts",
+    "build": "npx tsc",
+    "start": "node dist/app.js",
+    "start:ts": "node --no-warnings --loader ts-node/esm src/app.ts",
+    "start:dev": "ts-node-dev --respawn src/app.ts",
     "migrate:create": "npx prisma migrate dev --create-only",
     "migrate:up": "npx prisma migrate dev",
     "migrate:run": "npx prisma migrate deploy"
@@ -23,9 +25,7 @@
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.4.3",
-    "express": "^4.21.1",
-    "instances-container": "^2.0.6",
-    "jsonwebtoken": "^9.0.2"
+    "express": "^4.21.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
@@ -39,23 +39,22 @@
     "prisma": "^5.22.0",
     "ts-jest": "^29.2.5",
     "ts-node-dev": "^2.0.0",
-    "tsc-alias": "^1.8.10",
-    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.15.0"
   },
   "jest": {
-    "rootDir": "./src",
-    "coverageDirectory": "../coverage",
-    "moduleNameMapper": {
-      "^@domains/(.*)$": "<rootDir>/Domains/$1",
-      "^@applications/(.*)$": "<rootDir>/Applications/$1",
-      "^@interfaces/(.*)$": "<rootDir>/Interfaces/$1",
-      "^@infrastructures/(.*)$": "<rootDir>/Infrastructures/$1",
-      "^@commons/(.*)$": "<rootDir>/Commons/$1"
-    },
+    "preset": "ts-jest",
     "transform": {
       "^.+\\.[t|j]sx?$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "^@domains/(.*)$": "<rootDir>/src/Domains/$1",
+      "^@applications/(.*)$": "<rootDir>/src/Applications/$1",
+      "^@interfaces/(.*)$": "<rootDir>/src/Interfaces/$1",
+      "^@infrastructures/(.*)$": "<rootDir>/src/Infrastructures/$1",
+      "^@commons/(.*)$": "<rootDir>/src/Commons/$1"
     }
   }
 }
+```
+
