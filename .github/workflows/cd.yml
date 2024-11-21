@@ -18,8 +18,8 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
         script: |
-          cd ~/express-starter-basic
+          cd ~/express-starter
           git pull origin main
           npm ci
           npm run migrate:up
-          pm2 restart express-starter-clean
+          pm2 restart express-starter

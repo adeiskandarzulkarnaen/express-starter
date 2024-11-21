@@ -26,15 +26,7 @@ jobs:
         npm run test -- -i
       env:
         CI: true
-        DBHOST_TEST: ${{ secrets.DBHOST_TEST }}
-        DBUSER_TEST: ${{ secrets.DBUSER_TEST }}
-        DBNAME_TEST: ${{ secrets.DBNAME_TEST }}
-        DBPASS_TEST: ${{ secrets.DBPASS_TEST }}
-        DBPORT_TEST: ${{ secrets.DBPORT_TEST }}
-        DBHOST: ${{ secrets.DBHOST_TEST }}
-        DBUSER: ${{ secrets.DBUSER_TEST }}
-        DBNAME: ${{ secrets.DBNAME_TEST }}
-        DBPASS: ${{ secrets.DBPASS_TEST }}
-        DBPORT: ${{ secrets.DBPORT_TEST }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DATABASE_URL_TEST: ${{ secrets.DATABASE_URL_TEST }}
         ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
         ACCESS_TOKEN_AGE: ${{ secrets.ACCESS_TOKEN_AGE }}
