@@ -10,16 +10,16 @@ export class RegisteredUser {
   public username: string;
   public fullname: string;
 
-  constructor(payload: Partial<eRegisteredUser<any>>) {
+  constructor(payload: Record<string, unknown>) {
     this.verifyPayload(payload);
-    const { id, username, fullname } = payload;
+    const { id, username, fullname } = payload as eRegisteredUser;
 
-    this.id = id!;
-    this.username = username!;
-    this.fullname = fullname!;
+    this.id = id;
+    this.username = username;
+    this.fullname = fullname;
   }
 
-  private verifyPayload({ id, username, fullname }: Partial<eRegisteredUser>) {
+  private verifyPayload({ id, username, fullname }: Record<string, unknown>) {
     if (!id || !username || !fullname) {
       throw new Error('REGISTERED_USER.NOT_CONTAIN_NEEDED_PROPERTY');
     }
