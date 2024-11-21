@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import prismaClient from '@infrastructures/database/prisma/prismaClient';
+import prismaClient from '../src/Infrastructures/database/prisma/prismaClient';
 
 
 const UsersTableTestHelper = {

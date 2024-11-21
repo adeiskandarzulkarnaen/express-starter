@@ -8,6 +8,8 @@ class UserHandler {
   private container: Container;
   constructor(container: Container) {
     this.container = container;
+
+    this.postUserHandler = this.postUserHandler.bind(this);
   };
 
   async postUserHandler(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -18,7 +20,9 @@ class UserHandler {
       res.status(201).json({
         status: 'success',
         data: {
-          addedUser,
+          user: {
+            ...addedUser
+          },
         },
       });
     } catch (error) {
