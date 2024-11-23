@@ -2,8 +2,8 @@ import express, { Express } from 'express';
 
 /* routes */
 import usersRoute from '@interfaces/http/api/users';
-import errorHandler from '@commons/middleware/errorhandler';
-import notfoundpathhandler from '@commons/middleware/notfoundpathhandler';
+import errorhandler from '@interfaces/http/middleware/errorhandler';
+import notfoundpathhandler from '@interfaces/http/middleware/notfoundpathhandler';
 import { Container } from 'instances-container';
 
 
@@ -17,7 +17,7 @@ const createServer = (container: Container): Express => {
   app.use(usersRoute(container));
 
   app.use(notfoundpathhandler);
-  app.use(errorHandler);
+  app.use(errorhandler);
   return app;
 };
 

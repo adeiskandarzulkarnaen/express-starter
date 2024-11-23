@@ -8,6 +8,6 @@ const routes = (handler: UserHandler): Router => {
   router.post('/users', handler.postUserHandler);
 
   return router;
-}
+};
 
 export default routes;

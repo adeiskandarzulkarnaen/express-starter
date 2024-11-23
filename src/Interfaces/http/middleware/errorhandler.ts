@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { Request, Response, NextFunction } from 'express';
-import ClientError from '../exceptions/ClientError';
-import DomainErrorTranslator from '../exceptions/DomainErrorTranslator';
+import ClientError from '@commons/exceptions/ClientError';
+import DomainErrorTranslator from '@commons/exceptions/DomainErrorTranslator';
 
 
-function errorHandler(err: Error, req: Request, res: Response, next: NextFunction): void {
+function errorhandler(err: Error, req: Request, res: Response, next: NextFunction): void {
   const translatedError = DomainErrorTranslator.translate(err);
   if (translatedError instanceof ClientError) {
     res.status(translatedError.statusCode).json({
@@ -24,4 +23,4 @@ function errorHandler(err: Error, req: Request, res: Response, next: NextFunctio
 }
 
 
-export default errorHandler;
+export default errorhandler;

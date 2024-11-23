@@ -19,10 +19,9 @@ class UserHandler {
 
       res.status(201).json({
         status: 'success',
+        message: 'berhasil menambahkan user',
         data: {
-          user: {
-            ...addedUser
-          },
+          addedUser
         },
       });
     } catch (error) {
