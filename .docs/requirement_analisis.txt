@@ -1,0 +1,11 @@
+
+
+##############################################################################
+Fitur: Login
+Deskripsi: Sebagai User saya ingin bisa authentiukasi login
+Payload: username, password
+Spesifikasi:
+    - menampilkan pesan error jika credential tidak sesuai
+    - suspend akun selama 5 menit jika 3 kali login dan salah
+##############################################################################
+

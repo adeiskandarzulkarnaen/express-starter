@@ -4,7 +4,7 @@ export type eNewAuth = {
 }
 
 export class NewAuth {
-  private readonly accessToken: string;
+  public accessToken: string;
   constructor(payload: Record<string, unknown>) {
     this.verifyPayload(payload);
 

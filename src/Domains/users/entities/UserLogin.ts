@@ -5,8 +5,8 @@ export type eUserLogin<T = string> = {
 };
 
 export class UserLogin {
-  private username: string;
-  private password: string;
+  public username: string;
+  public password: string;
 
   constructor(payload: Record<string, unknown>) {
     this.verifyPayload(payload);

@@ -1,0 +1,4 @@
+
+
+Domain-Driven Design: Tackling Complexity in the Heart of Software, karya Eric Evans.
+An Introduction to Object-Oriented Analysis and Design and Iterative Development, karya Craig Larman

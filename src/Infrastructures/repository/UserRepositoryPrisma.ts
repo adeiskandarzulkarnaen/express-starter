@@ -31,6 +31,16 @@ class UserRepositoryPrisma extends UserRepository {
 
     return new RegisteredUser(result);
   }
+
+  public async getUserCredentialByUsername(username: string): Promise<{ id: string; username: string; password: string; }> {
+    const result = await this.prismaClient.user.findFirst({
+      where: { username },
+      select: { id: true, username: true, password: true }
+    });
+
+    if (!result) throw new InvariantError('credendensial tidak sesuai');
+    return result;
+  }
 }
 
 export default UserRepositoryPrisma;

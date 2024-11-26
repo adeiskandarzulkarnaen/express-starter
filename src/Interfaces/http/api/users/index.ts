@@ -4,9 +4,9 @@ import UserHandler from './handler';
 import routes from './routes';
 
 
-const usersRoute = (container: Container): Router => {
+const userRoutes = (container: Container): Router => {
   const userHandler = new UserHandler(container);
-  return routes(userHandler);
+  return routes(userHandler, container);
 };
 
-export default usersRoute;
+export default userRoutes;

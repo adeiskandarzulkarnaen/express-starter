@@ -23,7 +23,7 @@ class BcryptPasswordHash extends PasswordHash {
 
   async comparePassword(plain: string, encrypted: string): Promise<void> {
     const match = await this.bcrypt.compare(plain, encrypted);
-    if (!match) throw new AuthenticationError('kredensial yang Anda masukkan salah');
+    if (!match) throw new AuthenticationError('credendensial tidak sesuai');
   }
 };
 

@@ -1,10 +1,12 @@
 import express, { Express } from 'express';
+import { Container } from 'instances-container';
+
 
 /* routes */
-import usersRoute from '@interfaces/http/api/users';
+import userRoutes from '@interfaces/http/api/users';
+import authRoutes from '@interfaces/http/api/authentications';
 import errorhandler from '@interfaces/http/middleware/errorhandler';
 import notfoundpathhandler from '@interfaces/http/middleware/notfoundpathhandler';
-import { Container } from 'instances-container';
 
 
 
@@ -14,7 +16,8 @@ const createServer = (container: Container): Express => {
   app.disable('x-powered-by');
 
   /* use routes */
-  app.use(usersRoute(container));
+  app.use(userRoutes(container));
+  app.use(authRoutes(container));
 
   app.use(notfoundpathhandler);
   app.use(errorhandler);

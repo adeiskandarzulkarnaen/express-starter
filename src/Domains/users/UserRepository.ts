@@ -34,6 +34,8 @@ abstract class UserRepository {
    *                   is already taken.
    */
   abstract verifyAvailableUsername(username: string): Promise<void>;
+
+  abstract getUserCredentialByUsername(username: string): Promise<{id: string, username: string, password: string}>;
 }
 
 export default UserRepository;

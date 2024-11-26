@@ -1,29 +1,33 @@
+import AuthenticationTokenManager from '@applications/security/AuthenticationTokenManager';
 import PasswordHash from '@applications/security/PasswordHash';
+import { NewAuth } from '@domains/authentications/entities/NewAuth';
 import { eUserLogin, UserLogin } from '@domains/users/entities/UserLogin';
 import UserRepository from '@domains/users/UserRepository';
 
 
 interface AuthLoginUseCaseDevedencies {
   userRepository: UserRepository,
-  passwordhash: PasswordHash,
-  //
-}
+  passwordHash: PasswordHash,
+  authenticationTokenManager: AuthenticationTokenManager,
+};
 
 class AuthLoginUseCase {
-  private userRepository: UserRepository;
-  private passwordhash: PasswordHash;
-  constructor(userRepository: UserRepository, passwordhash: PasswordHash){
+  private readonly userRepository: UserRepository;
+  private readonly passwordHash: PasswordHash;
+  private readonly authenticationTokenManager: AuthenticationTokenManager;
+  constructor({ userRepository, passwordHash, authenticationTokenManager }: AuthLoginUseCaseDevedencies){
     this.userRepository = userRepository;
-    this.passwordhash = passwordhash;
+    this.passwordHash = passwordHash;
+    this.authenticationTokenManager = authenticationTokenManager;
   }
 
-  public async execute(payload: eUserLogin): Promise<void> {
+  public async execute(payload: eUserLogin): Promise<NewAuth> {
     const { username, password } = new UserLogin(payload);
 
-    // const { id: userId, username, password: encriptedPassword } = await this.userRepository.getUserByUsername(username)
-    // await this.passwordhash.comparePassword(password, encriptedPassword);
-    // const accessToken = this.tokenManager.generateAccessToken({ userId, username });
-    // return new NewAuth({ accessToken })
+    const { id: userId, password: encriptedPassword } = await this.userRepository.getUserCredentialByUsername(username);
+    await this.passwordHash.comparePassword(password, encriptedPassword);
+    const accessToken = this.authenticationTokenManager.generateAccessToken({ userId, username });
+    return new NewAuth({ accessToken });
   };
 };
 

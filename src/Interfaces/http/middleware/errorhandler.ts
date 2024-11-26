@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction } from 'express';
 import ClientError from '@commons/exceptions/ClientError';
 import DomainErrorTranslator from '@commons/exceptions/DomainErrorTranslator';
 
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function errorhandler(err: Error, req: Request, res: Response, next: NextFunction): void {
   const translatedError = DomainErrorTranslator.translate(err);
   if (translatedError instanceof ClientError) {

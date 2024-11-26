@@ -5,10 +5,7 @@ import AddUserUseCase from '@applications/use_case/AddUserUseCase';
 
 
 class UserHandler {
-  private container: Container;
-  constructor(container: Container) {
-    this.container = container;
-
+  constructor(private readonly container: Container) {
     this.postUserHandler = this.postUserHandler.bind(this);
   };
 
