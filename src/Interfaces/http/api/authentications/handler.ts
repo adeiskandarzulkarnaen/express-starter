@@ -5,25 +5,27 @@ import { Container } from 'instances-container';
 
 class AuthHandler {
   constructor(private readonly container: Container) {
-    this.postAuthHandler = this.postAuthHandler.bind(this);
+    // do something
   }
 
-  async postAuthHandler(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-      const authLoginUseCase: AuthLoginUseCase = this.container.getInstance(AuthLoginUseCase.name);
-      const { accessToken } = await authLoginUseCase.execute(req.body);
+  public postAuthHandlers = [
+    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+      try {
+        const authLoginUseCase: AuthLoginUseCase = this.container.getInstance(AuthLoginUseCase.name);
+        const { accessToken } = await authLoginUseCase.execute(req.body);
 
-      res.status(201).json({
-        status: 'success',
-        message: 'berhasil login!',
-        data: {
-          accessToken,
-        }
-      });
-    } catch (error) {
-      next(error);
+        res.status(201).json({
+          status: 'success',
+          message: 'berhasil login!',
+          data: {
+            accessToken,
+          }
+        });
+      } catch (error) {
+        next(error);
+      }
     }
-  }
+  ];
 };
 
 export default AuthHandler;

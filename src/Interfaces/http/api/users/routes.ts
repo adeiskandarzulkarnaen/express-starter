@@ -7,7 +7,8 @@ import UserHandler from './handler';
 const routes = (handler: UserHandler, container: Container): Router => {
   const router = Router();
 
-  router.post('/users', handler.postUserHandler);
+  router.post('/users', ...handler.postUserHandlers);
+  router.get('/users', ...handler.getUserHandlers);
 
   return router;
 };

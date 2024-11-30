@@ -4,7 +4,7 @@ import DomainErrorTranslator from '@commons/exceptions/DomainErrorTranslator';
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function errorhandler(err: Error, req: Request, res: Response, next: NextFunction): void {
+function onErrorHandler(err: Error, req: Request, res: Response, next: NextFunction): void {
   const translatedError = DomainErrorTranslator.translate(err);
   if (translatedError instanceof ClientError) {
     res.status(translatedError.statusCode).json({
@@ -23,4 +23,4 @@ function errorhandler(err: Error, req: Request, res: Response, next: NextFunctio
 }
 
 
-export default errorhandler;
+export default onErrorHandler;

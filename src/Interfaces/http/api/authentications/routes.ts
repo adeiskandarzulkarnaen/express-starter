@@ -7,7 +7,7 @@ import AuthHandler from './handler';
 const routes = (handler: AuthHandler, container: Container): Router => {
   const router = Router();
 
-  router.post('/auth', handler.postAuthHandler);
+  router.post('/authentications', ...handler.postAuthHandlers);
 
   return router;
 };

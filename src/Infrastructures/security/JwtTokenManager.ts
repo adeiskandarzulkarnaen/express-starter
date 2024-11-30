@@ -1,12 +1,12 @@
-import { Jwt, Secret, SignOptions } from 'jsonwebtoken';
+import type { JwtPayload, sign, verify } from 'jsonwebtoken';
+import config from '@commons/config';
 import AuthenticationTokenManager from '@applications/security/AuthenticationTokenManager';
 import InvariantError from '@commons/exceptions/InvariantError';
 
 
-
 interface JwtLib {
-  sign(payload: object, secretOrPrivateKey: Secret, options?: SignOptions): string;
-  verify(token: string, secretOrPublicKey: Secret): Jwt;
+  sign: typeof sign,
+  verify: typeof verify,
 }
 
 
@@ -16,19 +16,20 @@ class JwtTokenManager extends AuthenticationTokenManager {
   }
 
   generateAccessToken(payload: Record<string, string>): string {
-    const accessToken: string = this.jwt.sign(payload, process.env.ACCESS_TOKEN_KEY!,
+    const accessToken = this.jwt.sign(payload, config.jwt.secret!,
       {
         noTimestamp: true,
-        expiresIn: process.env.ACCESS_TOKEN_AGE
+        expiresIn: process.env.ACCESS_TOKEN_AGE,
+        algorithm: 'HS256'
       },
     );
     return accessToken;
   }
 
-  verifyAccessToken(accessToken: string): Jwt {
+  verifyAccessToken(accessToken: string): JwtPayload {
     try {
       const decoded = this.jwt.verify(accessToken, process.env.ACCESS_TOKEN_KEY!);
-      return decoded;
+      return decoded as object;
     } catch {
       throw new InvariantError('access token tidak valid!');
     }
