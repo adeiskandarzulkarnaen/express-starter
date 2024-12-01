@@ -8,7 +8,7 @@ const config = {
   },
   jwt: {
     age: process.env.ACCESS_TOKEN_AGE,
-    secret: process.env.ACCESS_TOKEN_SECRET,
+    secret: process.env.ACCESS_TOKEN_SECRET_KEY,
   }
 };
 
