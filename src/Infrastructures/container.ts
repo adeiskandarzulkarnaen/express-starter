@@ -1,10 +1,7 @@
 /* istanbul ignore file */
-
 import { createContainer } from 'instances-container';
 
 // external agency
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import prismaClient from './database/prisma/prismaClient';
 
 
@@ -42,22 +39,10 @@ container.register([
   {
     key: PasswordHash.name,
     Class: BcryptPasswordHash,
-    parameter: {
-      injectType: 'parameter',
-      dependencies: [
-        { concrete: bcrypt }
-      ]
-    }
   },
   {
     key: AuthenticationTokenManager.name,
     Class: JwtTokenManager,
-    parameter: {
-      injectType: 'parameter',
-      dependencies: [
-        { concrete: jwt }
-      ]
-    }
   }
 ]);
 

@@ -7,7 +7,7 @@
     "test": "dotenv -e .env -- jest src/",
     "test:watch": "dotenv -e .env -- jest src /--watchAll --coverage --setupFiles dotenv/config",
     "lint": "eslint \"src/**/*.ts\" --fix",
-    "build": "tsc && tsc-alias",
+    "build": "rm -rf dist/*; tsc && tsc-alias",
     "start": "node dist/app.js",
     "start:dev": "ts-node-dev -r tsconfig-paths/register --respawn src/app.ts",
     "migrate:create": "npx prisma migrate dev --create-only",

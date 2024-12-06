@@ -1,21 +1,18 @@
-import type { JwtPayload, sign, verify } from 'jsonwebtoken';
+import { JwtPayload, sign, verify } from 'jsonwebtoken';
 import config from '@commons/config';
 import AuthenticationTokenManager from '@applications/security/AuthenticationTokenManager';
 import InvariantError from '@commons/exceptions/InvariantError';
 
 
-interface JwtLib {
-  sign: typeof sign,
-  verify: typeof verify,
-}
-
 
 class JwtTokenManager extends AuthenticationTokenManager {
-  constructor(private readonly jwt: JwtLib) {
+  private readonly jwt;
+  constructor() {
     super();
+    this.jwt = { sign, verify };
   }
 
-  generateAccessToken(payload: Record<string, string>): string {
+  public generateAccessToken(payload: Record<string, string>): string {
     const accessToken = this.jwt.sign(payload, config.jwt.secret!,
       {
         noTimestamp: true,
@@ -26,7 +23,7 @@ class JwtTokenManager extends AuthenticationTokenManager {
     return accessToken;
   }
 
-  verifyAccessToken(accessToken: string): JwtPayload {
+  public verifyAccessToken(accessToken: string): JwtPayload {
     try {
       const decoded = this.jwt.verify(accessToken, process.env.ACCESS_TOKEN_KEY!);
       return decoded as object;

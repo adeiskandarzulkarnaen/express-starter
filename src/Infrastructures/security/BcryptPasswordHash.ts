@@ -1,17 +1,12 @@
+import bcrypt from 'bcrypt';
 import AuthenticationError from '@commons/exceptions/AuthenticationError';
 import PasswordHash from '@applications/security/PasswordHash';
 
 
-interface BcryptLib {
-  hash(password: string, saltRounds: number): Promise<string>;
-  compare(plain: string, encrypted: string): Promise<boolean>;
-}
-
 class BcryptPasswordHash extends PasswordHash {
-  private readonly bcrypt: BcryptLib;
+  private readonly bcrypt;
   private readonly saltRound: number;
-
-  constructor(bcrypt: BcryptLib, saltRound: number = 10) {
+  constructor(saltRound: number = 10) {
     super();
     this.bcrypt = bcrypt;
     this.saltRound = saltRound;
