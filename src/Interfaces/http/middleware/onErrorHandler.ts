@@ -14,7 +14,7 @@ function onErrorHandler(err: Error, req: Request, res: Response, next: NextFunct
     return;
   }
 
-  console.log(err.stack);
+  console.log(err.message);
   res.status(500).json({
     status: 'error',
     message: 'terjadi kegagalan pada server kami'

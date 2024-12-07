@@ -1,7 +1,8 @@
-import { Request, Response,  NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { Container } from 'instances-container';
 import { eRegisteredUser } from '@domains/users/entities/RegisteredUser';
 import AddUserUseCase from '@applications/use_case/AddUserUseCase';
+import expressJwtAuth, { JWTRequest } from '@interfaces/http/middleware/expressJwtAuth';
 
 // middleware
 
@@ -33,13 +34,14 @@ class UserHandler {
   ];
 
   public getUserHandlers = [
-    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    expressJwtAuth(),
+    async (req: JWTRequest, res: Response, next: NextFunction): Promise<void> => {
       try {
         res.status(201).json({
           status: 'success',
-          message: 'berhasil menambahkan user',
+          message: 'berhasil get data user',
           data: {
-            payload: 'req.auth'
+            payload: req.auth
           },
         });
       } catch (error) {

@@ -1,21 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
 import { TokenExpiredError, Algorithm, JwtPayload, verify } from 'jsonwebtoken';
 import AuthenticationError from '@commons/exceptions/AuthenticationError';
+import config from '@commons/config';
 
 
 
 export type JWTRequest<T = JwtPayload | string> = Request & { auth?: T };
+export type jwtAuthOption = { secret: string; algorithms: Algorithm[] };
 
 
-export type jwtAuthOption = {
-  secret: string;
-  algorithms: Algorithm[],
-}
-
-export function expressJwt(options: jwtAuthOption) {
-  if (!options || !options.secret) {
-    throw new Error('JWT auth middleware requires options for "secret"');
-  };
+// Note: Pastikan algorima yang digunakan sesuai dengan algorima yg digunakan pada saat membuat token
+export function expressJwtAuth(options: jwtAuthOption = { secret: config.jwt.secret!, algorithms: ['HS256'] }) {
+  if (!options || !options.secret) throw new Error('JWT auth middleware requires options for "secret"');
 
   return (req: JWTRequest, res: Response, next: NextFunction) => {
     const { authorization } = req.headers;
@@ -49,4 +45,5 @@ export function expressJwt(options: jwtAuthOption) {
 };
 
 
-export default expressJwt;
+
+export default expressJwtAuth;
